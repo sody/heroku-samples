@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+<head>
+	<title>${title}</title>
+	<meta content="text/html; charset=utf-8;" http-equiv="content-type"/>
+</head>
+<body>
+
+<div class="container">
+	<header id="header" class="row">
+		<div class="span3">
+			Logo
+		</div>
+	</header>
+
+	<nav id="navigation" class="row">
+	</nav>
+
+	<section id="content" class="row">
+		<t:body/>
+	</section>
+
+	<footer id="footer" class="row">
+		<div class="span12">
+			App Version: ${applicationVersion}, Tapestry Version: ${tapestryVersion} <br/>
+			<a href="mailto:ikhalopik@gmail.com">Contact Us</a>
+		</div>
+	</footer>
+</div>
+
+</body>
+</html>
