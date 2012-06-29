@@ -18,8 +18,8 @@ import org.apache.tapestry5.services.BindingSource;
  */
 @SupportsInformalParameters
 @Import(
-		stylesheet = "context:css/bootstrap.css",
-		library = {"context:js/jquery-1.7.2.js", "context:js/bootstrap.js"}
+		stylesheet = "context:css/bootstrap.min.css",
+		library = {"context:js/jquery.min.js", "context:js/bootstrap.min.js"}
 )
 public class Layout extends BaseComponent {
 	private static final String PAGE_TITLE_PROPERTY = "title";
