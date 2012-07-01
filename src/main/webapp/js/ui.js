@@ -1,5 +1,5 @@
-T5.extendInitializer({
-    "jquery.ui": function() {
+T5.extendInitializers({
+    buttons: function() {
         (function($) {
             // create buttons from every element of 'ui-button' class
             $(".ui-button").each(function() {
