@@ -13,36 +13,36 @@ import java.util.Locale;
  */
 public class BaseComponent {
 
-	@Inject
-	private ComponentResources resources;
+    @Inject
+    private ComponentResources resources;
 
-	@Inject
-	private Messages messages;
+    @Inject
+    private Messages messages;
 
-	@Inject
-	private Locale locale;
+    @Inject
+    private Locale locale;
 
-	public ComponentResources getResources() {
-		return resources;
-	}
+    public ComponentResources getResources() {
+        return resources;
+    }
 
-	public Messages getMessages() {
-		return messages;
-	}
+    public Messages getMessages() {
+        return messages;
+    }
 
-	public Locale getLocale() {
-		return locale;
-	}
+    public Locale getLocale() {
+        return locale;
+    }
 
-	protected String format(final String key, final Object... parameters) {
-		return messages.format(key, parameters);
-	}
+    protected String format(final String key, final Object... parameters) {
+        return messages.format(key, parameters);
+    }
 
-	protected String message(final String key) {
-		return messages.get(key);
-	}
+    protected String message(final String key) {
+        return messages.get(key);
+    }
 
-	protected String label(final String key) {
-		return messages.get(MessageUtils.label(key));
-	}
+    protected String label(final String key) {
+        return messages.get(MessageUtils.label(key));
+    }
 }
