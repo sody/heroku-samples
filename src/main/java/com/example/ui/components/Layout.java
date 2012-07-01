@@ -23,7 +23,8 @@ import org.apache.tapestry5.services.BindingSource;
                 "context:css/ui.css"},
 		library = {
                 "context:js/jquery.min.js",
-                "context:js/bootstrap.min.js"})
+                "context:js/bootstrap.min.js",
+                "context:js/ui.js"})
 public class Layout extends BaseComponent {
 	private static final String PAGE_TITLE_PROPERTY = "title";
 	private static final String PAGE_SUBTITLE_PROPERTY = "subtitle";
