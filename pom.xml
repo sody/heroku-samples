@@ -13,13 +13,6 @@
 		This is an example application that uses heroku container
 	</description>
 
-	<repositories>
-		<repository>
-			<id>howardlewisship</id>
-			<url>http://howardlewisship.com/snapshot-repository</url>
-		</repository>
-	</repositories>
-
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>

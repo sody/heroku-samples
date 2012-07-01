@@ -8,23 +8,42 @@
 
 <div class="container">
 	<header id="header" class="row">
-		<div class="span3">
-			Logo
-		</div>
+		<t:extension-point id="header-area"/>
 	</header>
 
 	<nav id="navigation" class="row">
+		<t:extension-point id="navigation-area">
+			<div class="navbar navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="brand" href="/">
+							Samples
+						</a>
+					</div>
+				</div>
+			</div>
+		</t:extension-point>
 	</nav>
 
 	<section id="content" class="row">
-		<t:body/>
+		<t:extension-point id="content-area">
+			<div class="container">
+				<div class="wrapper">
+					<div class="page-header">
+						<h1>${title} <t:if test="subtitle"><small>${subtitle}</small></t:if></h1>
+					</div>
+					<t:body/>
+				</div>
+			</div>
+		</t:extension-point>
 	</section>
 
 	<footer id="footer" class="row">
-		<div class="span12">
+		<t:extension-point id="footer-area">
+			<hr/>
+			Written by <a href="http://twitter.com/${author}">@${author}</a><br/>
 			App Version: ${applicationVersion}, Tapestry Version: ${tapestryVersion} <br/>
-			<a href="mailto:ikhalopik@gmail.com">Contact Us</a>
-		</div>
+		</t:extension-point>
 	</footer>
 </div>
 
