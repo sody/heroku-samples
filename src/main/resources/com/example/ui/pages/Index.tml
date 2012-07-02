@@ -1,6 +1,8 @@
 <html t:type="layout"
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 
-<div class="span12">Index page</div>
+<div class="hero-unit">
+	Examples of t5 components.
+</div>
 
 </html>

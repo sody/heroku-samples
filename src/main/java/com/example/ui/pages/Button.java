@@ -1,6 +1,9 @@
 package com.example.ui.pages;
 
 import com.example.ui.base.BasePage;
+import org.apache.tapestry5.Link;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.PageRenderLinkSource;
 
 /**
  * @author Ivan Khalopik
@@ -8,7 +11,10 @@ import com.example.ui.base.BasePage;
  */
 public class Button extends BasePage {
 
-    void onAction() {
-        //do something
+    @Inject
+    private PageRenderLinkSource pageRenderLinkSource;
+
+    public Link getHiddenPageLink() {
+        return pageRenderLinkSource.createPageRenderLink(ButtonHidden.class);
     }
 }

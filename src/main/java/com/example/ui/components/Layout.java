@@ -22,7 +22,7 @@ import org.apache.tapestry5.services.BindingSource;
                 "context:css/bootstrap.min.css",
                 "context:css/ui.css"},
         library = {
-                "context:js/jquery.min.js",
+                "context:js/jquery.js",
                 "context:js/bootstrap.min.js",
                 "context:js/ui.js"})
 public class Layout extends BaseComponent {

@@ -33,8 +33,12 @@ import org.apache.tapestry5.dom.Text;
  * @since 1.0
  */
 @Import(
-        stylesheet = {"context:css/jquery-ui.css"},
-        library = {"context:js/jquery-ui.js"})
+        stylesheet = {
+                "context:css/jquery-ui.css"},
+        library = {
+                "context:js/jquery.js",
+                "context:js/jquery-ui.js",
+                "context:js/ui.js"})
 public class Button {
     private static final String EMPTY_TEXT_PLACEHOLDER = "_EMPTY_";
     private static final String[][][] BUTTON_TYPES = {
