@@ -1,0 +1,17 @@
+<ul class="nav"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:loop source="navigationItems" value="navigationItem">
+		<t:if test="navigationItem.active">
+			<li class="active">
+				<t:pagelink page="prop:navigationItem.pageName">${pageLabel}</t:pagelink>
+			</li>
+			<p:else>
+				<li>
+					<t:pagelink page="prop:navigationItem.pageName">${pageLabel}</t:pagelink>
+				</li>
+			</p:else>
+		</t:if>
+	</t:loop>
+</ul>

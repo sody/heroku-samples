@@ -19,6 +19,7 @@
 						<a class="brand" href="/">
 							Samples
 						</a>
+						<t:navigation/>
 					</div>
 				</div>
 			</div>

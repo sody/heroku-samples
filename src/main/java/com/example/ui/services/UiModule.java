@@ -1,9 +1,15 @@
 package com.example.ui.services;
 
+import com.example.ui.internal.NavigationSourceImpl;
 import com.example.ui.internal.social.google.Google;
 import com.example.ui.internal.social.google.GoogleServiceProvider;
+import com.example.ui.pages.Button;
+import com.example.ui.pages.Index;
+import com.example.ui.pages.Social;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
@@ -28,6 +34,10 @@ public class UiModule {
 
     private static final String GOOGLE_CLIENT_ID = "google.client-id";
     private static final String GOOGLE_CLIENT_SECRET = "google.client-secret";
+
+    public static void bind(final ServiceBinder binder) {
+        binder.bind(NavigationSource.class, NavigationSourceImpl.class);
+    }
 
     @Contribute(SymbolProvider.class)
     @ApplicationDefaults
@@ -58,5 +68,12 @@ public class UiModule {
     public OAuth2ServiceProvider<Google> buildGoogleService(@Symbol(GOOGLE_CLIENT_ID) final String clientId,
                                                             @Symbol(GOOGLE_CLIENT_SECRET) final String clientSecret) {
         return new GoogleServiceProvider(clientId, clientSecret);
+    }
+
+    @Contribute(NavigationSource.class)
+    public void contributeNavigationSource(final OrderedConfiguration<Class> configuration) {
+        configuration.add("Home", Index.class);
+        configuration.add("Social", Social.class);
+        configuration.add("Button", Button.class);
     }
 }
