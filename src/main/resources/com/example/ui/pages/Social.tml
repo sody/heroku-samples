@@ -2,46 +2,55 @@
 	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
 	  xmlns:p="tapestry:parameter">
 
+<ul class="nav nav-tabs">
+	<li class="${facebookButtonClass}">
+		<t:facebookconnect t:id="facebook">FACEBOOK</t:facebookconnect>
+	</li>
+	<li class="${twitterButtonClass}">
+		<t:twitterconnect t:id="twitter">TWITTER</t:twitterconnect>
+	</li>
+	<li class="${googleButtonClass}">
+		<t:googleconnect t:id="google" scope="https://www.googleapis.com/auth/userinfo.profile">GOOGLE</t:googleconnect>
+	</li>
+</ul>
 <div class="row">
-	<br/>
-
-	<div class="btn-group">
-		<t:facebookconnect t:id="facebook" class="btn">FACEBOOK</t:facebookconnect>
-		<t:twitterconnect t:id="twitter" class="btn">TWITTER</t:twitterconnect>
-		<t:googleconnect t:id="google" scope="https://www.googleapis.com/auth/userinfo.profile" class="btn">GOOGLE</t:googleconnect>
-	</div>
-	<br/>
-	<br/>
-</div>
-<div class="row">
-	<t:if test="socialProfile">
-		<img src="${socialProfile.get('image')}" align="left" alt="picture"/>
-		<table>
-			<tbody>
-			<tr>
-				<th align="right">${message:label.id}:</th>
-				<td width="5"/>
-				<td><a href="${socialProfile.get('link')}">${socialProfile.get('id')}</a></td>
-			</tr>
-			<tr>
-				<th align="right">${message:label.name}:</th>
-				<td width="5"/>
-				<td>${socialProfile.get('name')}</td>
-			</tr>
-			<tr>
-				<th align="right">${message:label.gender}:</th>
-				<td width="5"/>
-				<td>${socialProfile.get('gender')}</td>
-			</tr>
-			<tr>
-				<th align="right">${message:label.locale}:</th>
-				<td width="5"/>
-				<td>${socialProfile.get('locale')}</td>
-			</tr>
-			</tbody>
-		</table>
+	<t:if test="profile">
+		<div class="span4">
+			<img src="${profile.imageLink}" align="right" alt="picture"/>
+		</div>
+		<div class="span8">
+			<table class="table">
+				<tbody>
+				<tr>
+					<th align="right">${message:label.id}:</th>
+					<td width="5"/>
+					<td><a href="${profile.link}">${profile.id}</a></td>
+				</tr>
+				<tr>
+					<th align="right">${message:label.name}:</th>
+					<td width="5"/>
+					<td>${profile.name}</td>
+				</tr>
+				<tr>
+					<th align="right">${message:label.gender}:</th>
+					<td width="5"/>
+					<td>${profile.gender}</td>
+				</tr>
+				<tr>
+					<th align="right">${message:label.locale}:</th>
+					<td width="5"/>
+					<td>${profile.locale}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
 		<p:else>
-			${errorMessage}
+			<div class="span12">
+				<div class="alert alert-error">
+					<a class="close" data-dismiss="alert" href="#">×</a>
+					${errorMessage}
+				</div>
+			</div>
 		</p:else>
 	</t:if>
 </div>

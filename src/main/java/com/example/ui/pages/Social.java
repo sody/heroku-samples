@@ -1,14 +1,13 @@
 package com.example.ui.pages;
 
 import com.example.ui.base.BasePage;
+import com.example.ui.internal.SocialProfile;
 import com.example.ui.internal.social.google.Google;
 import com.example.ui.internal.social.google.GoogleProfile;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.ioc.Messages;
-import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
@@ -17,17 +16,11 @@ import org.springframework.social.oauth2.OAuth2ServiceProvider;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.TwitterProfile;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author Ivan Khalopik
  * @since 1.0
  */
 public class Social extends BasePage {
-
-    @Inject
-    private Messages messages;
 
     @InjectService("facebookService")
     private OAuth2ServiceProvider<Facebook> facebookService;
@@ -39,73 +32,97 @@ public class Social extends BasePage {
     private OAuth2ServiceProvider<Google> googleService;
 
     @Persist
-    private Map<String, String> socialProfile;
+    private SocialProfile profile;
 
     @Persist
     @Property
     private String errorMessage;
 
-    public Map<String, String> getSocialProfile() {
-        return socialProfile;
+    public SocialProfile getProfile() {
+        return profile;
+    }
+
+    public String getFacebookButtonClass() {
+        return profile != null && profile.getType() == SocialProfile.Type.FACEBOOK
+                ? "active"
+                : null;
+    }
+
+    public String getTwitterButtonClass() {
+        return profile != null && profile.getType() == SocialProfile.Type.TWITTER
+                ? "active"
+                : null;
+    }
+
+    public String getGoogleButtonClass() {
+        return profile != null && profile.getType() == SocialProfile.Type.GOOGLE
+                ? "active"
+                : null;
     }
 
     @OnEvent(value = EventConstants.SUCCESS, component = "facebook")
     void facebookConnected(final String accessToken) {
-        final FacebookProfile profile = facebookService.getApi(accessToken).userOperations().getUserProfile();
+        final FacebookProfile facebookProfile = facebookService.getApi(accessToken)
+                .userOperations()
+                .getUserProfile();
 
         errorMessage = null;
-        socialProfile = new HashMap<String, String>();
-        socialProfile.put("id", profile.getId());
-        socialProfile.put("name", profile.getName());
-        socialProfile.put("gender", profile.getGender());
-        socialProfile.put("locale", String.valueOf(profile.getLocale()));
-        socialProfile.put("link", profile.getLink());
-        socialProfile.put("image", Facebook.GRAPH_API_URL + profile.getId() + "/picture?type=large");
+        profile = new SocialProfile(
+                SocialProfile.Type.FACEBOOK,
+                facebookProfile.getId(),
+                facebookProfile.getName(),
+                facebookProfile.getGender(),
+                String.valueOf(facebookProfile.getLocale()),
+                facebookProfile.getLink(), Facebook.GRAPH_API_URL + facebookProfile.getId() + "/picture?type=large");
     }
 
     @OnEvent(value = EventConstants.FAILURE, component = "facebook")
     void facebookFailure() {
-        socialProfile = null;
-        errorMessage = messages.format("message.connection-denied", "Facebook");
+        profile = null;
+        errorMessage = format("error.connection-denied", "Facebook");
     }
 
     @OnEvent(value = EventConstants.SUCCESS, component = "twitter")
     void twitterConnected(final String accessToken, final String accessTokenSecret) {
-        final TwitterProfile profile = twitterService.getApi(accessToken, accessTokenSecret).userOperations().getUserProfile();
+        final TwitterProfile twitterProfile = twitterService.getApi(accessToken, accessTokenSecret)
+                .userOperations()
+                .getUserProfile();
 
         errorMessage = null;
-        socialProfile = new HashMap<String, String>();
-        socialProfile.put("id", String.valueOf(profile.getId()));
-        socialProfile.put("name", profile.getName());
-        socialProfile.put("gender", "");
-        socialProfile.put("locale", profile.getLanguage());
-        socialProfile.put("link", profile.getProfileUrl());
-        socialProfile.put("image", profile.getProfileImageUrl());
+        profile = new SocialProfile(
+                SocialProfile.Type.TWITTER,
+                String.valueOf(twitterProfile.getId()),
+                twitterProfile.getName(),
+                "",
+                twitterProfile.getLanguage(),
+                twitterProfile.getProfileUrl(), twitterProfile.getProfileImageUrl());
     }
 
     @OnEvent(value = EventConstants.FAILURE, component = "twitter")
     void twitterFailure() {
-        socialProfile = null;
-        errorMessage = messages.format("message.connection-denied", "Twitter");
+        profile = null;
+        errorMessage = format("error.connection-denied", "Twitter");
     }
 
     @OnEvent(value = EventConstants.SUCCESS, component = "google")
     void googleConnected(final String accessToken) {
-        final GoogleProfile profile = googleService.getApi(accessToken).userOperations().getUserProfile();
+        final GoogleProfile googleProfile = googleService.getApi(accessToken)
+                .userOperations()
+                .getUserProfile();
 
         errorMessage = null;
-        socialProfile = new HashMap<String, String>();
-        socialProfile.put("id", String.valueOf(profile.getId()));
-        socialProfile.put("name", profile.getName());
-        socialProfile.put("gender", "");
-        socialProfile.put("locale", String.valueOf(profile.getLocale()));
-        socialProfile.put("link", profile.getLink());
-        socialProfile.put("image", profile.getPictureUrl());
+        profile = new SocialProfile(
+                SocialProfile.Type.GOOGLE,
+                String.valueOf(googleProfile.getId()),
+                googleProfile.getName(),
+                "",
+                String.valueOf(googleProfile.getLocale()),
+                googleProfile.getLink(), googleProfile.getPictureUrl());
     }
 
     @OnEvent(value = EventConstants.FAILURE, component = "google")
     void googleFailure(final String error, final String errorDescription) {
-        socialProfile = null;
-        errorMessage = messages.format("message.connection-denied", "Google");
+        profile = null;
+        errorMessage = format("error.connection-denied", "Google");
     }
 }
