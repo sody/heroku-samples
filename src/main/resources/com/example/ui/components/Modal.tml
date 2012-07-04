@@ -1,0 +1,21 @@
+<div t:id="container" id="prop:clientId" class="prop:containerClass"
+	 xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+
+		<h3>${title}</h3>
+	</div>
+
+	<div class="modal-body">
+		<t:body/>
+	</div>
+
+	<div class="modal-footer">
+		<t:delegate to="footer"/>
+
+		<t:block t:id="defaultFooter">
+			<a class="btn" data-dismiss="modal">${message:label.cancel}</a>
+		</t:block>
+	</div>
+</div>

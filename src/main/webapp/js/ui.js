@@ -35,5 +35,11 @@ T5.extendInitializers({
             // for demo only - create usual buttons from every element of 'button' class
             $(".button").button();
         })(jQuery);
+    },
+
+    modal: function(spec) {
+        (function($) {
+            $("#" + spec.id).modal('show');
+        })(jQuery);
     }
 });

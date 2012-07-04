@@ -5,6 +5,12 @@ package com.example.ui.internal;
  * @since 1.0
  */
 public class CSSConstants {
+    public static final String MODAL = "modal";
+    public static final String MODAL_HEADER = "modal-header";
+    public static final String MODAL_BODY = "modal-body";
+    public static final String MODAL_FOOTER = "modal-footer";
+    public static final String MODAL_BACKDROP = "modal-backdrop";
+
     public static final String HELPER_CLEAR_FIX = "ui-helper-clearfix";
     public static final String HELPER_HIDDEN_ACCESSIBLE = "ui-helper-hidden-accessible";
 
