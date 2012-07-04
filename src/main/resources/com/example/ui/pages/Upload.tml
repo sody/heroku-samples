@@ -1,9 +1,8 @@
 <html t:type="layout"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
-      xmlns:p="tapestry:parameter">
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 
 <t:zone t:id="formZone" id="formZone" update="show">
-    <t:form t:id="form" zone="formZone" class="form-horizontal">
+    <t:form t:id="form" zone="formZone" class="form-horizontal" t:mixins="ajaxupload">
         <fieldset>
             <legend>${message:section.upload-file}</legend>
 
@@ -23,7 +22,7 @@
             <div class="control-group">
                 <t:label for="file" class="control-label"/>
                 <div class="controls">
-                    <t:upload t:id="file" value="file" validate="required" label="message:label.upload-file"/>
+                    <t:upload t:id="file" value="file" label="message:label.upload-file"/>
                 </div>
             </div>
         </fieldset>

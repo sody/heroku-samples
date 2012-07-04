@@ -47,7 +47,7 @@ public class Upload extends BasePage {
     public StreamResponse onImage() {
         return new StreamResponse() {
             public String getContentType() {
-                return "application/octet-stream";
+                return "image/*";
             }
 
             public InputStream getStream() throws IOException {
@@ -61,14 +61,17 @@ public class Upload extends BasePage {
 
     @OnEvent(value = FAILURE)
     public Object onFailure() {
-        return formZone;
+        // use zone body to prevent zone duplication effect
+        return formZone.getBody();
     }
 
     @OnEvent(value = SUCCESS)
     public Object onSuccess() throws IOException {
-        image = ByteStreams.toByteArray(file.getStream());
-        success = true;
-
-        return formZone;
+        if (file != null) {
+            image = ByteStreams.toByteArray(file.getStream());
+            success = true;
+        }
+        // use zone body to prevent zone duplication effect
+        return formZone.getBody();
     }
 }
