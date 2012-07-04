@@ -102,6 +102,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.tapestry</groupId>
                 <artifactId>tapestry-core</artifactId>
                 <version>${tapestry.version}</version>
@@ -121,6 +127,12 @@
                         <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tapestry</groupId>
+                <artifactId>tapestry-upload</artifactId>
+                <version>${tapestry.version}</version>
             </dependency>
 
             <dependency>
@@ -187,8 +199,18 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.tapestry</groupId>
             <artifactId>tapestry-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-upload</artifactId>
         </dependency>
 
         <dependency>
@@ -204,6 +226,7 @@
 
     <properties>
         <slf4j.version>1.6.6</slf4j.version>
+        <guava.version>12.0</guava.version>
         <tapestry.version>5.3.3</tapestry.version>
         <spring.version>3.1.0.RELEASE</spring.version>
         <spring-social.version>1.0.2.RELEASE</spring-social.version>
