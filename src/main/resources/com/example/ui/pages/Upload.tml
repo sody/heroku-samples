@@ -2,20 +2,21 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 
 <t:zone t:id="formZone" id="formZone" update="show">
+    <t:if test="image">
+        <div class="thumbnail">
+            <img src="${imageLink}" alt="Uploaded Image"/>
+            <h5 align="center">${caption}</h5>
+        </div>
+    </t:if>
+
     <t:form t:id="form" zone="formZone" class="form-horizontal" t:mixins="ajaxupload">
         <fieldset>
             <legend>${message:section.upload-file}</legend>
 
-            <t:if test="success">
+            <t:if test="imageName">
                 <div class="alert alert-block alert-success">
                     <a class="close" data-dismiss="alert" href="#">&times;</a>
                     ${message:message.upload-success}
-                </div>
-            </t:if>
-
-            <t:if test="image">
-                <div class="thumbnail">
-                    <img src="${imageLink}" alt="Uploaded Image"/>
                 </div>
             </t:if>
 
@@ -23,6 +24,20 @@
                 <t:label for="file" class="control-label"/>
                 <div class="controls">
                     <t:upload t:id="file" value="file" label="message:label.upload-file"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <t:label for="caption" class="control-label"/>
+                <div class="controls">
+                    <t:textfield t:id="caption" value="caption" validate="required" label="message:label.caption"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <t:label for="checkbox" class="control-label"/>
+                <div class="controls">
+                    <t:checkbox t:id="checkbox" value="checked" label="message:label.checked"/>
                 </div>
             </div>
         </fieldset>

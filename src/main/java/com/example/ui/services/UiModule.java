@@ -48,6 +48,7 @@ public class UiModule {
     public void contributeApplicationDefaults(final MappedConfiguration<String, String> configuration) {
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "ru,en");
         configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0-SNAPSHOT");
+        configuration.add(SymbolConstants.FORM_CLIENT_LOGIC_ENABLED, "false");
         // created here https://developers.facebook.com/apps
         configuration.add(FACEBOOK_CLIENT_ID, "${env.facebook_id}");
         configuration.add(FACEBOOK_CLIENT_SECRET, "${env.facebook_secret}");

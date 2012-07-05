@@ -34,14 +34,22 @@ public class Upload extends BasePage {
     private byte[] image;
 
     @Property
+    @Persist(PersistenceConstants.SESSION)
+    private String caption;
+
+    @Property
     @Persist(PersistenceConstants.FLASH)
-    private boolean success;
+    private String imageName;
+
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private boolean checked;
 
     @InjectComponent
     private Zone formZone;
 
     public Link getImageLink() {
-        return getResources().createEventLink("image");
+        return getResources().createEventLink("image", imageName);
     }
 
     public StreamResponse onImage() {
@@ -69,7 +77,7 @@ public class Upload extends BasePage {
     public Object onSuccess() throws IOException {
         if (file != null) {
             image = ByteStreams.toByteArray(file.getStream());
-            success = true;
+            imageName = file.getFileName();
         }
         // use zone body to prevent zone duplication effect
         return formZone.getBody();
