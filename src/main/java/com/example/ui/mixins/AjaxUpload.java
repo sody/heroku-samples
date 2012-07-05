@@ -45,8 +45,7 @@ public class AjaxUpload {
 		// render script only if form's zone parameter is bound
 		if (zone != null) {
 			javascriptSupport.addInitializerCall("ajaxUpload", new JSONObject(
-					"formId", form.getClientId(),
-					"zoneId", zone
+					"formId", form.getClientId()
 			));
 		}
 	}

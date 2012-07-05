@@ -222,6 +222,13 @@
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-twitter</artifactId>
         </dependency>
+
+        <dependency>
+            <artifactId>servlet-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <properties>

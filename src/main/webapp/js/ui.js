@@ -50,14 +50,8 @@ T5.extendInitializers({
         tapestryForm.observe(Tapestry.FORM_PREPARE_FOR_SUBMIT_EVENT, function () {
             // find jquery form
             var $form = jQuery("#" + spec.formId);
-            // find all input files
-            var $files = $form.find("input:file");
             // if not empty files upload it in separate iframe
-            if ($files.val()) {
-                // copy form submit values to form inside the iframe
-                var data = $form.serializeArray();
-                // add flag to simulate ajax request
-                data.push({ name:"XHR_EMULATION", value:true });
+            if ($form.find("input:file").val()) {
                 // stop observing submit event to prevent usual tapestry form submission
                 tapestryForm.stopObserving(Tapestry.FORM_PROCESS_SUBMIT_EVENT);
                 // connect to tapestry form submission event
@@ -65,9 +59,7 @@ T5.extendInitializers({
                     // clear submit event listener to prevent infinite loop
                     tapestryForm.onsubmit = null;
                     // upload files in iframe using jquery plugin
-                    $files.upload(data, function (transport) {
-                        // parse json response
-                        var response = jQuery.parseJSON(transport);
+                    $form.upload().promise().done(function (response) {
                         // update zone with POST result
                         var zone = Tapestry.findZoneManager(spec.formId);
                         zone.processReply(response);
