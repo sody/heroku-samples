@@ -24,7 +24,7 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  */
 @Import(
 		library = {
-				"context:js/jquery.upload.js"
+				"context:js/jquery.ajax.upload.js"
 		})
 public class AjaxUpload {
 
