@@ -15,9 +15,9 @@ import org.apache.tapestry5.services.javascript.JavaScriptSupport;
  * and mark request with {@code 'XHR_EMULATION'} flag. Then client-side zone will be updated with json response
  * from server. If no file was selected the form will be submitted in a standard way.
  * <p/>
- * This fixin is based on <a href="http://lagoscript.org/jquery/upload?locale=en">jquery upload plugin</a>.
+ * If browser supports html5 this component will submit form using FormData.
  * <p/>
- * NOTE: {@link com.example.ui.internal.FileUploadFilter} request filter should be configured before.
+ * NOTE: {@link com.example.ui.internal.FileUploadFilter} request filter should be configured.
  *
  * @author Ivan Khalopik
  * @since 1.0

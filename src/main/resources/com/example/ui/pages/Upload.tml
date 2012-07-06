@@ -6,6 +6,7 @@
         <div class="thumbnail">
             <img src="${imageLink}" alt="Uploaded Image"/>
             <h5 align="center">${caption}</h5>
+            <p>${text}</p>
         </div>
     </t:if>
 
@@ -35,9 +36,16 @@
             </div>
 
             <div class="control-group">
-                <t:label for="checkbox" class="control-label"/>
+                <t:label for="attachText" class="control-label"/>
                 <div class="controls">
-                    <t:checkbox t:id="checkbox" value="checked" label="message:label.checked"/>
+                    <t:checkbox t:id="attachText" value="attachText" label="message:label.attach-text"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <t:label for="text" class="control-label"/>
+                <div class="controls">
+                    <t:upload t:id="text" value="textFile" label="message:label.text"/>
                 </div>
             </div>
         </fieldset>

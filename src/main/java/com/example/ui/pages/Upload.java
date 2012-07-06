@@ -2,6 +2,7 @@ package com.example.ui.pages;
 
 import com.example.ui.base.BasePage;
 import com.google.common.io.ByteStreams;
+import com.google.common.io.CharStreams;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.StreamResponse;
@@ -16,6 +17,7 @@ import org.apache.tapestry5.upload.services.UploadedFile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import static org.apache.tapestry5.EventConstants.FAILURE;
 import static org.apache.tapestry5.EventConstants.SUCCESS;
@@ -28,6 +30,9 @@ public class Upload extends BasePage {
 
     @Property
     private UploadedFile file;
+
+    @Property
+    private UploadedFile textFile;
 
     @Property
     @Persist(PersistenceConstants.SESSION)
@@ -43,7 +48,11 @@ public class Upload extends BasePage {
 
     @Property
     @Persist(PersistenceConstants.FLASH)
-    private boolean checked;
+    private boolean attachText;
+
+    @Property
+    @Persist(PersistenceConstants.SESSION)
+    private String text;
 
     @InjectComponent
     private Zone formZone;
@@ -78,6 +87,9 @@ public class Upload extends BasePage {
         if (file != null) {
             image = ByteStreams.toByteArray(file.getStream());
             imageName = file.getFileName();
+        }
+        if (attachText && textFile != null) {
+            text = CharStreams.toString(new InputStreamReader(textFile.getStream()));
         }
         // use zone body to prevent zone duplication effect
         return formZone.getBody();

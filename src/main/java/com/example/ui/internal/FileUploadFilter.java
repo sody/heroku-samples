@@ -11,6 +11,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 /**
+ * This class represents filter that emulates xhr request when 'XHR_EMULATION' parameter is set.
+ *
  * @author Ivan Khalopik
  * @since 1.0
  */
@@ -38,6 +40,7 @@ public class FileUploadFilter implements RequestFilter {
 
         @Override
         public boolean isXHR() {
+            // now request is xhr
             return true;
         }
     }
@@ -50,11 +53,13 @@ public class FileUploadFilter implements RequestFilter {
 
         @Override
         public OutputStream getOutputStream(final String contentType) throws IOException {
+            // now content type is always text/plain
             return super.getOutputStream(emulatedContentType.toString());
         }
 
         @Override
         public PrintWriter getPrintWriter(final String contentType) throws IOException {
+            // now content type is always text/plain
             return super.getPrintWriter(emulatedContentType.toString());
         }
     }

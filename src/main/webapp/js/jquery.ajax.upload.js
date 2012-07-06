@@ -1,8 +1,9 @@
 (function ($) {
     var uuid = 0;
-    var html5 = false;
+    var supportsFormData = typeof(FormData) == "function" && typeof(FormData.prototype) == "object";
 
-    if (html5) {
+    if (supportsFormData) {
+        // for html5 we can use FormData approach
         $.fn.upload = function (options) {
             var self = this,
                 data = new FormData(self.get(0)),
@@ -11,10 +12,12 @@
             options = options || {};
             self.promise = deferred.promise;
 
+            // add additional parameters to form data
             $.each(options.data || {}, function (name) {
                 data.append(name, this);
             });
 
+            // ajax post
             $.ajax({
                 url:self.attr("action"),
                 type:"post",
@@ -28,6 +31,7 @@
             return this;
         };
     } else {
+        // for no html5 we can emulate ajax request via iframe
         $.fn.upload = function (options) {
             var self = this,
                 data = self.serializeArray(),
@@ -47,11 +51,12 @@
             options = options || {};
             self.promise = deferred.promise;
 
+            // add additional parameters to form data
             $.each(options.data || {}, function (name) {
                 data.push({ name:name, value:this });
             });
 
-            // clone file inputs and attach them to original form
+            // clone file inputs and attach original to newly created form
             $file.after(function() {
                 return this.clone();
             }).appendTo($form);
