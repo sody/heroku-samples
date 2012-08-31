@@ -1,0 +1,30 @@
+<html t:type="layout"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+
+<t:zone t:id="formZone" id="formZone" update="show">
+    <t:if test="text">
+        <div class="hero-unit">
+            ${text}
+        </div>
+    </t:if>
+
+    <t:form t:id="form" zone="formZone" class="form-horizontal">
+        <fieldset>
+            <legend>${message:section.double-submit}</legend>
+
+            <div class="control-group">
+                <t:label for="text" class="control-label"/>
+                <div class="controls">
+                    <t:textarea t:id="text" value="text" validate="required"/>
+                </div>
+            </div>
+
+        </fieldset>
+        <div class="form-actions">
+            <t:submit value="message:label.submit" class="btn btn-primary"/>
+        </div>
+    </t:form>
+</t:zone>
+
+
+</html>

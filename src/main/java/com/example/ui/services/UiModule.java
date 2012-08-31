@@ -4,10 +4,7 @@ import com.example.ui.internal.FileUploadFilter;
 import com.example.ui.internal.NavigationSourceImpl;
 import com.example.ui.internal.social.google.Google;
 import com.example.ui.internal.social.google.GoogleServiceProvider;
-import com.example.ui.pages.Button;
-import com.example.ui.pages.Index;
-import com.example.ui.pages.Social;
-import com.example.ui.pages.Upload;
+import com.example.ui.pages.*;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -81,6 +78,7 @@ public class UiModule {
         configuration.add("Social", Social.class);
         configuration.add("Button", Button.class);
         configuration.add("Upload", Upload.class);
+        configuration.add("Deferred", Deferred.class);
     }
 
     @Contribute(RequestHandler.class)

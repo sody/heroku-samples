@@ -1,3 +1,6 @@
+/**
+ * @author Ivan Khalopik
+ */
 (function ($) {
     var uuid = 0;
     var supportsFormData = typeof(FormData) == "function" && typeof(FormData.prototype) == "object";
