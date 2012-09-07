@@ -4,6 +4,8 @@
 
 <div class="row">
     <div class="span6">
+        <h4>Without RenderDeferred mixin</h4>
+        <br/>
         <t:actionlink t:id="updateLeft" zone="prop:leftZoneId"
                       rel="tooltip" title="zone=${prop:leftZoneId}" class="btn">
             ${message:label.update}
@@ -19,6 +21,8 @@
     </div>
 
     <div class="span6">
+        <h4>With RenderDeferred mixin</h4>
+        <br/>
         <t:actionlink t:id="updateRight" zone="prop:rightZoneId" t:mixins="RenderDeferred"
                       rel="tooltip" title="zone=${prop:rightZoneId}" class="btn">
                       ${message:label.update}
@@ -34,4 +38,94 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="span12">
+        <h2>${message:message.source-code}</h2>
+    </div>
+    <div class="span6">
+        <h4>Deferred.tml:</h4>
+        <pre>
+&lt;t:actionlink t:id="updateLeft"
+              zone="prop:leftZoneId"
+              class="btn"&gt;
+    <t:outputraw value="literal:$"/>{message:label.update}
+&lt;/t:actionlink&gt;
+&lt;br/&gt;&lt;br/&gt;
+&lt;t:zone t:id="leftZone"&gt;
+    &lt;div class="hero-unit"&gt;
+        &lt;p&gt;<t:outputraw value="literal:$"/>{message:message.help-text}&lt;/p&gt;
+        &lt;p&gt;<t:outputraw value="literal:$"/>{leftContent}&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/t:zone&gt;
+        </pre>
+
+        <h4>Deferred.java:</h4>
+        <pre>
+public class Deferred extends BasePage {
+
+    @InjectComponent
+    private Zone leftZone;
+
+    @Property
+    private String leftContent;
+
+    @Persist
+    private int leftTimes;
+
+    public String getLeftZoneId() {
+        return leftZone.getClientId();
+    }
+
+    @OnEvent(component = "updateLeft")
+    Object updateLeftContent() {
+        leftContent = format("message.content-text", ++leftTimes);
+        return leftZone;
+    }
+}
+
+        </pre>
+    </div>
+    <div class="span6">
+        <h4>Deferred.tml:</h4>
+        <pre>
+&lt;t:actionlink t:id="updateRight" t:mixins="RenderDeferred"
+              zone="prop:rightZoneId"
+              class="btn"&gt;
+    <t:outputraw value="literal:$"/>{message:label.update}
+&lt;/t:actionlink&gt;
+&lt;br/&gt;&lt;br/&gt;
+&lt;t:zone t:id="rightZone"&gt;
+    &lt;div class="hero-unit"&gt;
+        &lt;p&gt;<t:outputraw value="literal:$"/>{message:message.help-text}&lt;/p&gt;
+        &lt;p&gt;<t:outputraw value="literal:$"/>{rightContent}&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/t:zone&gt;
+        </pre>
+
+        <h4>Deferred.java:</h4>
+        <pre>
+public class Deferred extends BasePage {
+
+    @InjectComponent
+    private Zone rightZone;
+
+    @Property
+    private String rightContent;
+
+    @Persist
+    private int rightTimes;
+
+    public String getRightZoneId() {
+        return rightZone.getClientId();
+    }
+
+    @OnEvent(component = "updateRight")
+    Object updateRightContent() {
+        rightContent = format("message.content-text", ++rightTimes);
+        return rightZone;
+    }
+}
+        </pre>
+    </div>
+</div>
 </html>
