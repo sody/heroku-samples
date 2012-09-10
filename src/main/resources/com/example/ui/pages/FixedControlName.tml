@@ -1,0 +1,85 @@
+<html t:type="layout"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+
+
+<div class="row">
+    <div class="span6">
+        <t:form t:id="leftForm" class="form-horizontal">
+            <fieldset>
+                <legend>Without FixedControlName mixin</legend>
+                <div class="control-group">
+                    <t:label for="leftName" class="control-label"/>
+                    <div class="controls">
+                        <t:textfield t:id="leftName" value="leftName" validate="required" label="message:label.name"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <t:label for="leftDescription" class="control-label"/>
+                    <div class="controls">
+                        <t:textfield t:id="leftDescription" value="leftDescription" label="message:label.description"/>
+                    </div>
+                </div>
+
+                <t:zone t:id="leftZone">
+                    <div class="control-group">
+                        <t:label for="leftCountrySelect" class="control-label"/>
+                        <div class="controls">
+                            <t:select t:id="leftCountrySelect" value="leftCountry" model="leftCountryModel" zone="prop:leftZoneId"
+                                      label="message:label.country"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <t:label for="leftCitySelect" class="control-label"/>
+                        <div class="controls">
+                            <t:select t:id="leftCitySelect" value="leftCity" model="leftCityModel" label="message:label.city"/>
+                        </div>
+                    </div>
+                </t:zone>
+            </fieldset>
+            <div class="form-actions">
+                <t:submit value="message:label.submit" class="btn btn-primary"/>
+            </div>
+        </t:form>
+    </div>
+
+    <div class="span6">
+        <t:form t:id="rightForm" class="form-horizontal">
+            <fieldset>
+                <legend>With FixedControlName mixin</legend>
+                <div class="control-group">
+                    <t:label for="rightName" class="control-label"/>
+                    <div class="controls">
+                        <t:textfield t:id="rightName" value="rightName" validate="required" label="message:label.name"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <t:label for="rightDescription" class="control-label"/>
+                    <div class="controls">
+                        <t:textfield t:id="rightDescription" value="rightDescription" label="message:label.description"/>
+                    </div>
+                </div>
+
+                <t:zone t:id="rightZone" t:mixins="FixedControlName">
+                    <div class="control-group">
+                        <t:label for="rightCountrySelect" class="control-label"/>
+                        <div class="controls">
+                            <t:select t:id="rightCountrySelect" value="rightCountry" model="rightCountryModel" zone="prop:rightZoneId"
+                                      label="message:label.country"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <t:label for="rightCitySelect" class="control-label"/>
+                        <div class="controls">
+                            <t:select t:id="rightCitySelect" value="rightCity" model="rightCityModel" label="message:label.city"/>
+                        </div>
+                    </div>
+                </t:zone>
+            </fieldset>
+            <div class="form-actions">
+                <t:submit value="message:label.submit" class="btn btn-primary"/>
+            </div>
+        </t:form>
+    </div>
+</div>
+
+</html>

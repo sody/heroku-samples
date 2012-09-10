@@ -5,6 +5,7 @@ import com.example.ui.internal.NavigationSourceImpl;
 import com.example.ui.internal.social.google.Google;
 import com.example.ui.internal.social.google.GoogleServiceProvider;
 import com.example.ui.pages.*;
+import org.apache.tapestry5.ComponentParameterConstants;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -46,6 +47,7 @@ public class UiModule {
         configuration.add(SymbolConstants.SUPPORTED_LOCALES, "ru,en");
         configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0-SNAPSHOT");
         configuration.add(SymbolConstants.FORM_CLIENT_LOGIC_ENABLED, "false");
+        configuration.add(ComponentParameterConstants.ZONE_UPDATE_METHOD, "none");
         // created here https://developers.facebook.com/apps
         configuration.add(FACEBOOK_CLIENT_ID, "${env.facebook_id}");
         configuration.add(FACEBOOK_CLIENT_SECRET, "${env.facebook_secret}");
