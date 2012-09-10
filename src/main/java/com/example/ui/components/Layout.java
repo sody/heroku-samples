@@ -20,10 +20,12 @@ import org.apache.tapestry5.services.BindingSource;
 @Import(
         stylesheet = {
                 "context:css/bootstrap.css",
+                "context:css/prettify.css",
                 "context:css/ui.css"},
         library = {
                 "context:js/jquery.js",
                 "context:js/bootstrap.js",
+                "context:js/prettify.js",
                 "context:js/ui.js"})
 public class Layout extends BaseComponent {
     private static final String PAGE_TITLE_PROPERTY = "title";
