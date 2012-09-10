@@ -46,49 +46,13 @@
         <div>
             <a class="btn btn-link" href="#leftDemo1" data-toggle="collapse">Deferred.tml</a>
             <div id="leftDemo1" class="collapse in">
-            <pre class="prettyprint linenums">
-&lt;t:actionlink t:id="updateLeft"
-              zone="prop:leftZoneId"
-              class="btn"&gt;
-    <t:outputraw value="literal:$"/>{message:label.update}
-&lt;/t:actionlink&gt;
-&lt;br/&gt;&lt;br/&gt;
-&lt;t:zone t:id="leftZone"&gt;
-    &lt;div class="hero-unit"&gt;
-        &lt;p&gt;<t:outputraw value="literal:$"/>{message:message.help-text}&lt;/p&gt;
-        &lt;p&gt;<t:outputraw value="literal:$"/>{leftContent}&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/t:zone&gt;
-            </pre>
+                <t:source content="classpath:sources/deferred/Deferred_left_tml.source" class="prettyprint linenums"/>
             </div>
         </div>
         <div>
             <a class="btn btn-link collapsed" href="#leftDemo2" data-toggle="collapse">Deferred.java</a>
             <div id="leftDemo2" class="collapse fade">
-            <pre class="prettyprint linenums">
-public class Deferred extends BasePage {
-
-    @InjectComponent
-    private Zone leftZone;
-
-    @Property
-    private String leftContent;
-
-    @Persist
-    private int leftTimes;
-
-    public String getLeftZoneId() {
-        return leftZone.getClientId();
-    }
-
-    @OnEvent(component = "updateLeft")
-    Object updateLeftContent() {
-        leftContent = format("message.content-text", ++leftTimes);
-        return leftZone;
-    }
-}
-
-            </pre>
+                <t:source content="classpath:sources/deferred/Deferred_left_java.source" class="prettyprint linenums"/>
             </div>
         </div>
     </div>
@@ -97,49 +61,13 @@ public class Deferred extends BasePage {
         <div>
             <a class="btn btn-link" href="#rightDemo1" data-toggle="collapse">Deferred.tml</a>
             <div id="rightDemo1" class="collapse in">
-            <pre class="prettyprint linenums">
-&lt;t:actionlink t:id="updateRight"
-              t:mixins="RenderDeferred"
-              zone="prop:rightZoneId"
-              class="btn"&gt;
-    <t:outputraw value="literal:$"/>{message:label.update}
-&lt;/t:actionlink&gt;
-&lt;br/&gt;&lt;br/&gt;
-&lt;t:zone t:id="rightZone"&gt;
-    &lt;div class="hero-unit"&gt;
-        &lt;p&gt;<t:outputraw value="literal:$"/>{message:message.help-text}&lt;/p&gt;
-        &lt;p&gt;<t:outputraw value="literal:$"/>{rightContent}&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/t:zone&gt;
-            </pre>
+                <t:source content="classpath:sources/deferred/Deferred_right_tml.source" class="prettyprint linenums"/>
             </div>
         </div>
         <div>
             <a class="btn btn-link collapsed" href="#rightDemo2" data-toggle="collapse">Deferred.java</a>
             <div id="rightDemo2" class="collapse">
-            <pre class="prettyprint linenums">
-public class Deferred extends BasePage {
-
-    @InjectComponent
-    private Zone rightZone;
-
-    @Property
-    private String rightContent;
-
-    @Persist
-    private int rightTimes;
-
-    public String getRightZoneId() {
-        return rightZone.getClientId();
-    }
-
-    @OnEvent(component = "updateRight")
-    Object updateRightContent() {
-        rightContent = format("message.content-text", ++rightTimes);
-        return rightZone;
-    }
-}
-            </pre>
+                <t:source content="classpath:sources/deferred/Deferred_right_java.source" class="prettyprint linenums"/>
             </div>
         </div>
     </div>

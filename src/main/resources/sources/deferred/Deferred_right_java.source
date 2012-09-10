@@ -1,0 +1,21 @@
+public class Deferred extends BasePage {
+
+    @InjectComponent
+    private Zone rightZone;
+
+    @Property
+    private String rightContent;
+
+    @Persist
+    private int rightTimes;
+
+    public String getRightZoneId() {
+        return rightZone.getClientId();
+    }
+
+    @OnEvent(component = "updateRight")
+    Object updateRightContent() {
+        rightContent = format("message.content-text", ++rightTimes);
+        return rightZone;
+    }
+}
