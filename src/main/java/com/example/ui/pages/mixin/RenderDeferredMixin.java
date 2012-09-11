@@ -1,4 +1,4 @@
-package com.example.ui.pages;
+package com.example.ui.pages.mixin;
 
 import com.example.ui.base.BaseTabbedPage;
 import org.apache.tapestry5.annotations.InjectComponent;
@@ -11,7 +11,7 @@ import org.apache.tapestry5.corelib.components.Zone;
  * @author Ivan Khalopik
  * @since 1.0
  */
-public class Deferred extends BaseTabbedPage {
+public class RenderDeferredMixin extends BaseTabbedPage {
 
     @InjectComponent
     private Zone beforeZone;

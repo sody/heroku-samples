@@ -19,6 +19,6 @@ public abstract class MessageUtils {
     }
 
     public static String normalize(final String key) {
-        return key.replaceAll("/", "-").replaceAll("(.)([A-Z])", "$1-$2").toLowerCase();
+        return key.replaceAll("/", ".").replaceAll("([^.])([A-Z])", "$1-$2").toLowerCase();
     }
 }

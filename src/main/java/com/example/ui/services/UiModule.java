@@ -5,6 +5,8 @@ import com.example.ui.internal.NavigationSourceImpl;
 import com.example.ui.internal.social.google.Google;
 import com.example.ui.internal.social.google.GoogleServiceProvider;
 import com.example.ui.pages.*;
+import com.example.ui.pages.mixin.RenderDeferredMixin;
+import com.example.ui.pages.mixin.FixedControlNameMixin;
 import org.apache.tapestry5.ComponentParameterConstants;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
@@ -80,7 +82,8 @@ public class UiModule {
         configuration.add("Social", Social.class);
         configuration.add("Button", Button.class);
         configuration.add("Upload", Upload.class);
-        configuration.add("Deferred", Deferred.class);
+        configuration.add("RenderDeferredMixin", RenderDeferredMixin.class);
+        configuration.add("FixedControlNameMixin", FixedControlNameMixin.class);
     }
 
     @Contribute(RequestHandler.class)

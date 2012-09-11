@@ -47,8 +47,8 @@
         </t:form>
 
         <h4>${message:section.source-code}</h4>
-        <t:source content="classpath:sources/fixedcontrolname/before_tml.source"/>
-        <t:source content="classpath:sources/fixedcontrolname/before_java.source"/>
+        <t:source content="classpath:sources/mixin/fixedcontrolname/before_tml.source"/>
+        <t:source content="classpath:sources/mixin/fixedcontrolname/before_java.source"/>
     </t:block>
 
     <t:block t:id="afterTab">
@@ -89,8 +89,8 @@
         </t:form>
 
         <h4>${message:section.source-code}</h4>
-        <t:source content="classpath:sources/fixedcontrolname/after_tml.source"/>
-        <t:source content="classpath:sources/fixedcontrolname/after_java.source"/>
+        <t:source content="classpath:sources/mixin/fixedcontrolname/after_tml.source"/>
+        <t:source content="classpath:sources/mixin/fixedcontrolname/after_java.source"/>
     </t:block>
 </div>
 

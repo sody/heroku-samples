@@ -1,4 +1,4 @@
-package com.example.ui.pages;
+package com.example.ui.pages.mixin;
 
 import com.example.ui.base.BaseTabbedPage;
 import org.apache.tapestry5.EventConstants;
@@ -17,7 +17,7 @@ import java.util.Collections;
  * @author Ivan Khalopik
  * @since 1.0
  */
-public class FixedControlName extends BaseTabbedPage {
+public class FixedControlNameMixin extends BaseTabbedPage {
 
     @Property
     private String name;
