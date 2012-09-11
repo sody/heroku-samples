@@ -1,0 +1,35 @@
+<t:form t:id="afterForm" class="form-horizontal">
+    <fieldset>
+        <div class="control-group">
+            <t:label for="afterName" class="control-label"/>
+            <div class="controls">
+                <t:textfield t:id="afterName" value="name" validate="required" label="message:label.name"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <t:label for="afterDescription" class="control-label"/>
+            <div class="controls">
+                <t:textfield t:id="afterDescription" value="description" label="message:label.description"/>
+            </div>
+        </div>
+
+        <t:zone t:id="afterZone" t:mixins="FixedControlName">
+            <div class="control-group">
+                <t:label for="afterCountrySelect" class="control-label"/>
+                <div class="controls">
+                    <t:select t:id="afterCountrySelect" value="country" model="countryModel" zone="prop:afterZoneId"
+                              label="message:label.country"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <t:label for="afterCitySelect" class="control-label"/>
+                <div class="controls">
+                    <t:select t:id="afterCitySelect" value="city" model="cityModel" label="message:label.city"/>
+                </div>
+            </div>
+        </t:zone>
+    </fieldset>
+    <div class="form-actions">
+        <t:submit value="message:label.submit" class="btn btn-primary"/>
+    </div>
+</t:form>

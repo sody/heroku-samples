@@ -3,35 +3,40 @@
 
 
 <div class="row">
-    <div class="span6">
-        <t:form t:id="leftForm" class="form-horizontal">
+    <div class="span12">
+        <t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
+            <t:delegate to="tabContent"/>
+        </t:tabs>
+    </div>
+
+    <t:block t:id="beforeTab">
+        <t:form t:id="beforeForm" class="form-horizontal">
             <fieldset>
-                <legend>Without FixedControlName mixin</legend>
                 <div class="control-group">
-                    <t:label for="leftName" class="control-label"/>
+                    <t:label for="beforeName" class="control-label"/>
                     <div class="controls">
-                        <t:textfield t:id="leftName" value="leftName" validate="required" label="message:label.name"/>
+                        <t:textfield t:id="beforeName" value="name" validate="required" label="message:label.name"/>
                     </div>
                 </div>
                 <div class="control-group">
-                    <t:label for="leftDescription" class="control-label"/>
+                    <t:label for="beforeDescription" class="control-label"/>
                     <div class="controls">
-                        <t:textfield t:id="leftDescription" value="leftDescription" label="message:label.description"/>
+                        <t:textfield t:id="beforeDescription" value="description" label="message:label.description"/>
                     </div>
                 </div>
 
-                <t:zone t:id="leftZone">
+                <t:zone t:id="beforeZone">
                     <div class="control-group">
-                        <t:label for="leftCountrySelect" class="control-label"/>
+                        <t:label for="beforeCountrySelect" class="control-label"/>
                         <div class="controls">
-                            <t:select t:id="leftCountrySelect" value="leftCountry" model="leftCountryModel" zone="prop:leftZoneId"
+                            <t:select t:id="beforeCountrySelect" value="country" model="countryModel" zone="prop:beforeZoneId"
                                       label="message:label.country"/>
                         </div>
                     </div>
                     <div class="control-group">
-                        <t:label for="leftCitySelect" class="control-label"/>
+                        <t:label for="beforeCitySelect" class="control-label"/>
                         <div class="controls">
-                            <t:select t:id="leftCitySelect" value="leftCity" model="leftCityModel" label="message:label.city"/>
+                            <t:select t:id="beforeCitySelect" value="city" model="cityModel" label="message:label.city"/>
                         </div>
                     </div>
                 </t:zone>
@@ -40,37 +45,40 @@
                 <t:submit value="message:label.submit" class="btn btn-primary"/>
             </div>
         </t:form>
-    </div>
 
-    <div class="span6">
-        <t:form t:id="rightForm" class="form-horizontal">
+        <h4>${message:section.source-code}</h4>
+        <t:source content="classpath:sources/fixedcontrolname/before_tml.source"/>
+        <t:source content="classpath:sources/fixedcontrolname/before_java.source"/>
+    </t:block>
+
+    <t:block t:id="afterTab">
+        <t:form t:id="afterForm" class="form-horizontal">
             <fieldset>
-                <legend>With FixedControlName mixin</legend>
                 <div class="control-group">
-                    <t:label for="rightName" class="control-label"/>
+                    <t:label for="afterName" class="control-label"/>
                     <div class="controls">
-                        <t:textfield t:id="rightName" value="rightName" validate="required" label="message:label.name"/>
+                        <t:textfield t:id="afterName" value="name" validate="required" label="message:label.name"/>
                     </div>
                 </div>
                 <div class="control-group">
-                    <t:label for="rightDescription" class="control-label"/>
+                    <t:label for="afterDescription" class="control-label"/>
                     <div class="controls">
-                        <t:textfield t:id="rightDescription" value="rightDescription" label="message:label.description"/>
+                        <t:textfield t:id="afterDescription" value="description" label="message:label.description"/>
                     </div>
                 </div>
 
-                <t:zone t:id="rightZone" t:mixins="FixedControlName">
+                <t:zone t:id="afterZone" t:mixins="FixedControlName">
                     <div class="control-group">
-                        <t:label for="rightCountrySelect" class="control-label"/>
+                        <t:label for="afterCountrySelect" class="control-label"/>
                         <div class="controls">
-                            <t:select t:id="rightCountrySelect" value="rightCountry" model="rightCountryModel" zone="prop:rightZoneId"
+                            <t:select t:id="afterCountrySelect" value="country" model="countryModel" zone="prop:afterZoneId"
                                       label="message:label.country"/>
                         </div>
                     </div>
                     <div class="control-group">
-                        <t:label for="rightCitySelect" class="control-label"/>
+                        <t:label for="afterCitySelect" class="control-label"/>
                         <div class="controls">
-                            <t:select t:id="rightCitySelect" value="rightCity" model="rightCityModel" label="message:label.city"/>
+                            <t:select t:id="afterCitySelect" value="city" model="cityModel" label="message:label.city"/>
                         </div>
                     </div>
                 </t:zone>
@@ -79,7 +87,11 @@
                 <t:submit value="message:label.submit" class="btn btn-primary"/>
             </div>
         </t:form>
-    </div>
+
+        <h4>${message:section.source-code}</h4>
+        <t:source content="classpath:sources/fixedcontrolname/after_tml.source"/>
+        <t:source content="classpath:sources/fixedcontrolname/after_java.source"/>
+    </t:block>
 </div>
 
 </html>
