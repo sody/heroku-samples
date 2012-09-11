@@ -17,9 +17,6 @@ public class BaseComponent {
     private ComponentResources resources;
 
     @Inject
-    private Messages messages;
-
-    @Inject
     private Locale locale;
 
     public ComponentResources getResources() {
@@ -27,7 +24,7 @@ public class BaseComponent {
     }
 
     public Messages getMessages() {
-        return messages;
+        return resources.getContainerMessages();
     }
 
     public Locale getLocale() {
@@ -35,14 +32,14 @@ public class BaseComponent {
     }
 
     protected String format(final String key, final Object... parameters) {
-        return messages.format(key, parameters);
+        return getMessages().format(key, parameters);
     }
 
     protected String message(final String key) {
-        return messages.get(key);
+        return getMessages().get(key);
     }
 
     protected String label(final String key) {
-        return messages.get(MessageUtils.label(key));
+        return getMessages().get(MessageUtils.label(key));
     }
 }

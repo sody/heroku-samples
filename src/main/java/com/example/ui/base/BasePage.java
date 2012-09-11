@@ -1,6 +1,7 @@
 package com.example.ui.base;
 
 import com.example.ui.internal.MessageUtils;
+import org.apache.tapestry5.ioc.Messages;
 
 /**
  * @author Ivan Khalopik
@@ -18,5 +19,10 @@ public class BasePage extends BaseComponent {
 
     public String getSubtitle() {
         return null;
+    }
+
+    @Override
+    public Messages getMessages() {
+        return getResources().getMessages();
     }
 }

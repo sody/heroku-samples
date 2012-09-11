@@ -1,54 +1,92 @@
 package com.example.ui.pages;
 
 import com.example.ui.base.BasePage;
+import org.apache.tapestry5.Block;
+import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
+import org.apache.tapestry5.ioc.annotations.Inject;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
- *
  * @author Ivan Khalopik
  * @since 1.0
  */
 public class Deferred extends BasePage {
 
     @InjectComponent
-    private Zone leftZone;
+    private Zone beforeZone;
 
     @InjectComponent
-    private Zone rightZone;
+    private Zone afterZone;
 
     @Property
-    private String leftContent;
+    private String beforeContent;
 
     @Property
-    private String rightContent;
+    private String afterContent;
 
     @Persist
-    private int leftTimes;
+    private int beforeTimes;
 
     @Persist
-    private int rightTimes;
+    private int afterTimes;
 
-    public String getLeftZoneId() {
-        return leftZone.getClientId();
+    @Property
+    private String selectedTab;
+
+    public String getBeforeZoneId() {
+        return beforeZone.getClientId();
     }
 
-    public String getRightZoneId() {
-        return rightZone.getClientId();
+    public String getAfterZoneId() {
+        return afterZone.getClientId();
     }
 
-    @OnEvent(component = "updateLeft")
-    Object updateLeftContent() {
-        leftContent = format("message.content-text", ++leftTimes);
-        return leftZone;
+    public List<String> getTabs() {
+        return Arrays.asList("before", "after");
     }
 
-    @OnEvent(component = "updateRight")
-    Object updateRightContent() {
-        rightContent = format("message.content-text", ++rightTimes);
-        return rightZone;
+    public Block getContent() {
+        return getResources().getBlock(selectedTab + "Block");
+    }
+
+    @OnEvent(component = "updateBefore")
+    Object updateBeforeContent() {
+        beforeContent = format("message.content-text", ++beforeTimes);
+        return beforeZone;
+    }
+
+    @OnEvent(component = "updateAfter")
+    Object updateAfterContent() {
+        afterContent = format("message.content-text", ++afterTimes);
+        return afterZone;
+    }
+
+    @OnEvent(EventConstants.ACTIVATE)
+    void activatePage(final String tab) {
+        selectedTab = tab;
+    }
+
+    @OnEvent(EventConstants.ACTIVATE)
+    void activatePage() {
+        if (selectedTab == null) {
+            selectedTab = "before";
+        }
+    }
+
+    @OnEvent(EventConstants.PASSIVATE)
+    String passivatePage() {
+        return selectedTab;
+    }
+
+    @OnEvent(component = "tabs")
+    void selectTab(final String tab) {
+        selectedTab = tab;
     }
 }

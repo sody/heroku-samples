@@ -1,13 +1,12 @@
-<t:actionlink t:id="updateRight"
-              t:mixins="RenderDeferred"
-              zone="prop:rightZoneId"
+<t:actionlink t:id="updateAfter" t:mixins="RenderDeferred"
+              zone="prop:afterZoneId"
               class="btn">
     ${message:label.update}
 </t:actionlink>
 <br/><br/>
-<t:zone t:id="rightZone">
+<t:zone t:id="afterZone">
     <div class="hero-unit">
         <p>${message:message.help-text}</p>
-        <p>${rightContent}</p>
+        <p>${afterContent}</p>
     </div>
 </t:zone>

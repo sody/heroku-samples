@@ -9,6 +9,7 @@ import org.apache.tapestry5.annotations.Mixin;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.corelib.mixins.DiscardBody;
+import org.apache.tapestry5.dom.Element;
 import org.apache.tapestry5.ioc.Resource;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.InternalUtils;
@@ -35,8 +36,9 @@ public class Source {
 
     @BeginRender
     void begin(final MarkupWriter writer) throws IOException {
-        writer.element("pre");
+        final Element pre = writer.element("pre");
         resources.renderInformalParameters(writer);
+        pre.addClassName("prettyprint", "linenums");
 
         InputStream inputStream = null;
         InputStreamReader reader = null;

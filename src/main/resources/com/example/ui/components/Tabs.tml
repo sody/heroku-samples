@@ -1,0 +1,19 @@
+<div class="tabbable tabs-top"
+     xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+
+    <ul class="nav nav-tabs">
+        <t:loop source="items" value="item">
+            <li class="${itemClass}">
+                <t:delegate to="itemBody"/>
+            </li>
+        </t:loop>
+    </ul>
+
+    <div class="tab-content">
+        <t:body/>
+    </div>
+
+    <t:block t:id="defaultItemBody">
+        <t:actionlink context="item">${itemLabel}</t:actionlink>
+    </t:block>
+</div>

@@ -1,12 +1,12 @@
-<t:actionlink t:id="updateLeft"
-              zone="prop:leftZoneId"
+<t:actionlink t:id="updateBefore"
+              zone="prop:beforeZoneId"
               class="btn">
     ${message:label.update}
 </t:actionlink>
 <br/><br/>
-<t:zone t:id="leftZone">
+<t:zone t:id="beforeZone">
     <div class="hero-unit">
         <p>${message:message.help-text}</p>
-        <p>${leftContent}</p>
+        <p>${beforeContent}</p>
     </div>
 </t:zone>
