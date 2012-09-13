@@ -85,8 +85,7 @@ public class UiModule {
                 .child("mixin")
                     .add(AjaxUploadMixin.class)
                     .add(RenderDeferredMixin.class)
-                    .add(FixedControlNameMixin.class)
-                    .add(PreventDoubleSubmitMixin.class);
+                    .add(FixedControlNameMixin.class);
         return builder;
     }
 

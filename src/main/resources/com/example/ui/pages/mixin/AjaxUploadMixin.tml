@@ -1,59 +1,130 @@
 <html t:type="layout"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 
-<t:zone t:id="formZone" id="formZone" update="show">
-    <t:if test="image">
-        <div class="thumbnail">
-            <img src="${imageLink}" alt="Uploaded Image"/>
-            <h5 align="center">${caption}</h5>
-            <p>${text}</p>
-        </div>
-    </t:if>
+<t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
+    <t:delegate to="tabContent"/>
 
-    <t:form t:id="form" zone="formZone" class="form-horizontal" t:mixins="ajaxupload">
-        <fieldset>
-            <legend>${message:section.upload-file}</legend>
+    <t:block t:id="beforeTab">
+        <t:zone t:id="beforeZone" id="beforeZone">
+            <t:if test="image">
+                <div class="thumbnail">
+                    <img src="${imageLink}" alt="Uploaded Image"/>
+                    <h5 align="center">${caption}</h5>
 
-            <t:if test="imageName">
-                <div class="alert alert-block alert-success">
-                    <a class="close" data-dismiss="alert" href="#">&times;</a>
-                    ${message:message.upload-success}
+                    <p>${text}</p>
                 </div>
             </t:if>
 
-            <div class="control-group">
-                <t:label for="file" class="control-label"/>
-                <div class="controls">
-                    <t:upload t:id="file" value="file" label="message:label.upload-file"/>
-                </div>
-            </div>
+            <t:form t:id="beforeForm" zone="beforeZone" class="form-horizontal">
+                <fieldset>
+                    <legend>${message:section.upload-file}</legend>
 
-            <div class="control-group">
-                <t:label for="caption" class="control-label"/>
-                <div class="controls">
-                    <t:textfield t:id="caption" value="caption" validate="required" label="message:label.caption"/>
-                </div>
-            </div>
+                    <t:if test="imageName">
+                        <div class="alert alert-block alert-success">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            ${message:message.upload-success}
+                        </div>
+                    </t:if>
 
-            <div class="control-group">
-                <t:label for="attachText" class="control-label"/>
-                <div class="controls">
-                    <t:checkbox t:id="attachText" value="attachText" label="message:label.attach-text"/>
-                </div>
-            </div>
+                    <div class="control-group">
+                        <t:label for="beforeImage" class="control-label"/>
+                        <div class="controls">
+                            <t:upload t:id="beforeImage" value="file" label="message:label.upload-file"/>
+                        </div>
+                    </div>
 
-            <div class="control-group">
-                <t:label for="text" class="control-label"/>
-                <div class="controls">
-                    <t:upload t:id="text" value="textFile" label="message:label.text"/>
-                </div>
-            </div>
-        </fieldset>
-        <div class="form-actions">
-            <t:submit value="message:label.upload" class="btn btn-primary"/>
-        </div>
-    </t:form>
-</t:zone>
+                    <div class="control-group">
+                        <t:label for="beforeCaption" class="control-label"/>
+                        <div class="controls">
+                            <t:textfield t:id="beforeCaption" value="caption" validate="required"
+                                         label="message:label.caption"/>
+                        </div>
+                    </div>
 
+                    <div class="control-group">
+                        <t:label for="beforeAttachText" class="control-label"/>
+                        <div class="controls">
+                            <t:checkbox t:id="beforeAttachText" value="attachText" label="message:label.attach-text"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <t:label for="beforeText" class="control-label"/>
+                        <div class="controls">
+                            <t:upload t:id="beforeText" value="textFile" label="message:label.text"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-actions">
+                    <t:submit value="message:label.upload" class="btn btn-primary"/>
+                </div>
+            </t:form>
+        </t:zone>
+    </t:block>
+
+    <t:block t:id="afterTab">
+        <t:zone t:id="afterZone" id="afterZone">
+            <t:if test="image">
+                <div class="thumbnail">
+                    <img src="${imageLink}" alt="Uploaded Image"/>
+                    <h5 align="center">${caption}</h5>
+
+                    <p>${text}</p>
+                </div>
+            </t:if>
+
+            <t:form t:id="afterForm" zone="afterZone" class="form-horizontal" t:mixins="AjaxUpload">
+                <fieldset>
+                    <legend>${message:section.upload-file}</legend>
+
+                    <t:if test="imageName">
+                        <div class="alert alert-block alert-success">
+                            <a class="close" data-dismiss="alert" href="#">&times;</a>
+                            ${message:message.upload-success}
+                        </div>
+                    </t:if>
+
+                    <div class="control-group">
+                        <t:label for="afterImage" class="control-label"/>
+                        <div class="controls">
+                            <t:upload t:id="afterImage" value="file" label="message:label.upload-file"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <t:label for="afterCaption" class="control-label"/>
+                        <div class="controls">
+                            <t:textfield t:id="afterCaption" value="caption" validate="required"
+                                         label="message:label.caption"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <t:label for="afterAttachText" class="control-label"/>
+                        <div class="controls">
+                            <t:checkbox t:id="afterAttachText" value="attachText" label="message:label.attach-text"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <t:label for="afterText" class="control-label"/>
+                        <div class="controls">
+                            <t:upload t:id="afterText" value="textFile" label="message:label.text"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-actions">
+                    <t:submit value="message:label.upload" class="btn btn-primary"/>
+                </div>
+            </t:form>
+        </t:zone>
+    </t:block>
+
+    <t:block t:id="sourceTab">
+        <t:source content="classpath:sources/mixin/AjaxUploadMixin_tml.source"/>
+        <t:source content="classpath:sources/mixin/AjaxUploadMixin_java.source"/>
+    </t:block>
+
+</t:tabs>
 
 </html>
