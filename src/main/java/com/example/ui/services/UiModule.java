@@ -4,11 +4,12 @@ import com.example.ui.internal.FileUploadFilter;
 import com.example.ui.internal.NavigationSourceBuilder;
 import com.example.ui.internal.social.google.Google;
 import com.example.ui.internal.social.google.GoogleServiceProvider;
+import com.example.ui.pages.mixin.AjaxUploadMixin;
 import com.example.ui.pages.Button;
 import com.example.ui.pages.Index;
 import com.example.ui.pages.Social;
-import com.example.ui.pages.Upload;
 import com.example.ui.pages.mixin.FixedControlNameMixin;
+import com.example.ui.pages.mixin.PreventDoubleSubmitMixin;
 import com.example.ui.pages.mixin.RenderDeferredMixin;
 import org.apache.tapestry5.ComponentParameterConstants;
 import org.apache.tapestry5.SymbolConstants;
@@ -81,10 +82,11 @@ public class UiModule {
         builder.add(Index.class)
                 .add(Social.class)
                 .add(Button.class)
-                .add(Upload.class)
                 .child("mixin")
+                    .add(AjaxUploadMixin.class)
                     .add(RenderDeferredMixin.class)
-                    .add(FixedControlNameMixin.class);
+                    .add(FixedControlNameMixin.class)
+                    .add(PreventDoubleSubmitMixin.class);
         return builder;
     }
 

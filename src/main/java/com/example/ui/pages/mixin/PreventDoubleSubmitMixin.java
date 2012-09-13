@@ -1,4 +1,4 @@
-package com.example.ui.pages;
+package com.example.ui.pages.mixin;
 
 import com.example.ui.base.BasePage;
 import com.google.common.io.ByteStreams;
@@ -26,7 +26,7 @@ import static org.apache.tapestry5.EventConstants.SUCCESS;
  * @author Ivan Khalopik
  * @since 1.0
  */
-public class DoubleSubmit extends BasePage {
+public class PreventDoubleSubmitMixin extends BasePage {
 
     @Property
     @Persist(PersistenceConstants.FLASH)

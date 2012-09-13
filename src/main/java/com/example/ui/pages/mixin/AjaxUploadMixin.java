@@ -1,4 +1,4 @@
-package com.example.ui.pages;
+package com.example.ui.pages.mixin;
 
 import com.example.ui.base.BasePage;
 import com.google.common.io.ByteStreams;
@@ -26,7 +26,7 @@ import static org.apache.tapestry5.EventConstants.SUCCESS;
  * @author Ivan Khalopik
  * @since 1.0
  */
-public class Upload extends BasePage {
+public class AjaxUploadMixin extends BasePage {
 
     @Property
     private UploadedFile file;
