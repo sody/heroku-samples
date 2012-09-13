@@ -29,7 +29,7 @@ public class BaseTabbedPage extends BasePage {
     }
 
     public List<String> getTabs() {
-        return Arrays.asList("before", "after");
+        return Arrays.asList("before", "after", "source");
     }
 
     public Block getTabContent() {

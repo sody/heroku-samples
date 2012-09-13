@@ -41,10 +41,6 @@
                 <t:submit value="message:label.submit" class="btn btn-primary"/>
             </div>
         </t:form>
-
-        <h4>${message:section.source-code}</h4>
-        <t:source content="classpath:sources/mixin/fixedcontrolname/before_tml.source"/>
-        <t:source content="classpath:sources/mixin/fixedcontrolname/before_java.source"/>
     </t:block>
 
     <t:block t:id="afterTab">
@@ -83,12 +79,12 @@
                 <t:submit value="message:label.submit" class="btn btn-primary"/>
             </div>
         </t:form>
-
-        <h4>${message:section.source-code}</h4>
-        <t:source content="classpath:sources/mixin/fixedcontrolname/after_tml.source"/>
-        <t:source content="classpath:sources/mixin/fixedcontrolname/after_java.source"/>
     </t:block>
 
+    <t:block t:id="sourceTab">
+        <t:source content="classpath:sources/mixin/FixedControlNameMixin_tml.source"/>
+        <t:source content="classpath:sources/mixin/FixedControlNameMixin_java.source"/>
+    </t:block>
 </t:tabs>
 
 </html>

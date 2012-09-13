@@ -16,9 +16,6 @@
                 <p>${beforeContent}</p>
             </div>
         </t:zone>
-        <h4>${message:section.source-code}</h4>
-        <t:source content="classpath:sources/mixin/renderdeferred/before_tml.source"/>
-        <t:source content="classpath:sources/mixin/renderdeferred/before_java.source"/>
     </t:block>
 
     <t:block t:id="afterTab">
@@ -33,9 +30,11 @@
                 <p>${afterContent}</p>
             </div>
         </t:zone>
-        <h4>${message:section.source-code}</h4>
-        <t:source content="classpath:sources/mixin/renderdeferred/after_tml.source"/>
-        <t:source content="classpath:sources/mixin/renderdeferred/after_java.source"/>
+    </t:block>
+
+    <t:block t:id="sourceTab">
+        <t:source content="classpath:sources/mixin/RenderDeferredMixin_tml.source"/>
+        <t:source content="classpath:sources/mixin/RenderDeferredMixin_java.source"/>
     </t:block>
 
 </t:tabs>
