@@ -1,5 +1,8 @@
 package com.example.ui.services;
 
+import org.apache.tapestry5.Link;
+import org.apache.tapestry5.ioc.Messages;
+
 import java.util.List;
 
 /**
@@ -8,13 +11,16 @@ import java.util.List;
  */
 public interface NavigationSource {
 
-    List<Item> getNavigationItems();
-
+    List<Item> getNavigationItems(Messages messages);
 
     interface Item {
 
         boolean isActive();
 
-        String getPageName();
+        Link getLink();
+
+        String getLabel();
+
+        List<Item> getChildren();
     }
 }

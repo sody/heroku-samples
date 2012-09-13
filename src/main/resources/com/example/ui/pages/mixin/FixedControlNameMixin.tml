@@ -1,13 +1,8 @@
 <html t:type="layout"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 
-
-<div class="row">
-    <div class="span12">
-        <t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
-            <t:delegate to="tabContent"/>
-        </t:tabs>
-    </div>
+<t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
+    <t:delegate to="tabContent"/>
 
     <t:block t:id="beforeTab">
         <t:form t:id="beforeForm" class="form-horizontal">
@@ -29,14 +24,15 @@
                     <div class="control-group">
                         <t:label for="beforeCountrySelect" class="control-label"/>
                         <div class="controls">
-                            <t:select t:id="beforeCountrySelect" value="country" model="countryModel" zone="prop:beforeZoneId"
-                                      label="message:label.country"/>
+                            <t:select t:id="beforeCountrySelect" value="country" model="countryModel"
+                                      zone="prop:beforeZoneId" label="message:label.country"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <t:label for="beforeCitySelect" class="control-label"/>
                         <div class="controls">
-                            <t:select t:id="beforeCitySelect" value="city" model="cityModel" label="message:label.city"/>
+                            <t:select t:id="beforeCitySelect" value="city" model="cityModel"
+                                      label="message:label.city"/>
                         </div>
                     </div>
                 </t:zone>
@@ -71,8 +67,8 @@
                     <div class="control-group">
                         <t:label for="afterCountrySelect" class="control-label"/>
                         <div class="controls">
-                            <t:select t:id="afterCountrySelect" value="country" model="countryModel" zone="prop:afterZoneId"
-                                      label="message:label.country"/>
+                            <t:select t:id="afterCountrySelect" value="country" model="countryModel"
+                                      zone="prop:afterZoneId" label="message:label.country"/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -92,6 +88,7 @@
         <t:source content="classpath:sources/mixin/fixedcontrolname/after_tml.source"/>
         <t:source content="classpath:sources/mixin/fixedcontrolname/after_java.source"/>
     </t:block>
-</div>
+
+</t:tabs>
 
 </html>

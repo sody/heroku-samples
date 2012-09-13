@@ -1,13 +1,8 @@
 <html t:type="layout"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 
-
-<div class="row">
-    <div class="span12">
-        <t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
-            <t:delegate to="tabContent"/>
-        </t:tabs>
-    </div>
+<t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
+    <t:delegate to="tabContent"/>
 
     <t:block t:id="beforeTab">
         <t:actionlink t:id="updateBefore" zone="prop:beforeZoneId"
@@ -42,6 +37,7 @@
         <t:source content="classpath:sources/mixin/renderdeferred/after_tml.source"/>
         <t:source content="classpath:sources/mixin/renderdeferred/after_java.source"/>
     </t:block>
-</div>
+
+</t:tabs>
 
 </html>

@@ -1,23 +1,24 @@
 package com.example.ui.services;
 
 import com.example.ui.internal.FileUploadFilter;
-import com.example.ui.internal.NavigationSourceImpl;
+import com.example.ui.internal.NavigationSourceBuilder;
 import com.example.ui.internal.social.google.Google;
 import com.example.ui.internal.social.google.GoogleServiceProvider;
-import com.example.ui.pages.*;
-import com.example.ui.pages.mixin.RenderDeferredMixin;
+import com.example.ui.pages.Button;
+import com.example.ui.pages.Index;
+import com.example.ui.pages.Social;
+import com.example.ui.pages.Upload;
 import com.example.ui.pages.mixin.FixedControlNameMixin;
+import com.example.ui.pages.mixin.RenderDeferredMixin;
 import org.apache.tapestry5.ComponentParameterConstants;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
-import org.apache.tapestry5.ioc.ServiceBinder;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
-import org.apache.tapestry5.services.RequestFilter;
-import org.apache.tapestry5.services.RequestHandler;
+import org.apache.tapestry5.services.*;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookServiceProvider;
 import org.springframework.social.oauth1.OAuth1ServiceProvider;
@@ -38,10 +39,6 @@ public class UiModule {
 
     private static final String GOOGLE_CLIENT_ID = "google.client-id";
     private static final String GOOGLE_CLIENT_SECRET = "google.client-secret";
-
-    public static void bind(final ServiceBinder binder) {
-        binder.bind(NavigationSource.class, NavigationSourceImpl.class);
-    }
 
     @Contribute(SymbolProvider.class)
     @ApplicationDefaults
@@ -76,14 +73,19 @@ public class UiModule {
         return new GoogleServiceProvider(clientId, clientSecret);
     }
 
-    @Contribute(NavigationSource.class)
-    public void contributeNavigationSource(final OrderedConfiguration<Class> configuration) {
-        configuration.add("Home", Index.class);
-        configuration.add("Social", Social.class);
-        configuration.add("Button", Button.class);
-        configuration.add("Upload", Upload.class);
-        configuration.add("RenderDeferredMixin", RenderDeferredMixin.class);
-        configuration.add("FixedControlNameMixin", FixedControlNameMixin.class);
+    public NavigationSource buildNavigationSource(final RequestGlobals globals,
+                                                  final PageRenderLinkSource linkSource,
+                                                  final ComponentClassResolver resolver) {
+        final NavigationSourceBuilder builder = new NavigationSourceBuilder(globals, linkSource, resolver);
+
+        builder.add(Index.class)
+                .add(Social.class)
+                .add(Button.class)
+                .add(Upload.class)
+                .child("mixin")
+                    .add(RenderDeferredMixin.class)
+                    .add(FixedControlNameMixin.class);
+        return builder;
     }
 
     @Contribute(RequestHandler.class)
