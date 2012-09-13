@@ -83,10 +83,3 @@ T5.extendInitializers({
     });
   }
 });
-
-(function($) {
-  $(function() {
-    $('[rel=tooltip]').tooltip();
-    prettyPrint();
-  });
-})(jQuery);

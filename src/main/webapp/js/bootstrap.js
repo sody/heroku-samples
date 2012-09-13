@@ -1234,6 +1234,12 @@
   , html: true
   }
 
+  /* TOOLTIP DATA-API
+   * ============== */
+  $(function () {
+    $('[rel=tooltip]').tooltip();
+  })
+
 }(window.jQuery);
 /* ===========================================================
  * bootstrap-popover.js v2.1.1

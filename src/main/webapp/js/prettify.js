@@ -1475,3 +1475,9 @@ window['PR_SHOULD_USE_CONTINUATION'] = true;
     'PR_TYPE': PR_TYPE
   };
 })();
+
+(function($) {
+  $(function() {
+    prettyPrint();
+  });
+})(jQuery);
