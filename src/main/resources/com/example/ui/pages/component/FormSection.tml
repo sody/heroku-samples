@@ -5,7 +5,8 @@
 <t:form t:id="form" class="form-horizontal" autocomplete="off">
     <t:form.section t:id="commonSection">
         <t:form.fieldset title="message:section.common">
-            <t:errors/>
+            <t:form.errors/>
+
             <div class="control-group">
                 <t:label for="first" class="control-label"/>
                 <div class="controls">
@@ -32,7 +33,8 @@
 
     <t:form.section t:id="credentialsSection">
         <t:form.fieldset title="message:section.credentials">
-            <t:errors/>
+            <t:form.errors/>
+
             <div class="control-group">
                 <t:label for="password" class="control-label"/>
                 <div class="controls">
