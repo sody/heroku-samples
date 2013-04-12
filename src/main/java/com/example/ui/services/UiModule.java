@@ -4,12 +4,12 @@ import com.example.ui.internal.FileUploadFilter;
 import com.example.ui.internal.NavigationSourceBuilder;
 import com.example.ui.internal.social.google.Google;
 import com.example.ui.internal.social.google.GoogleServiceProvider;
-import com.example.ui.pages.mixin.AjaxUploadMixin;
 import com.example.ui.pages.Button;
 import com.example.ui.pages.Index;
 import com.example.ui.pages.Social;
+import com.example.ui.pages.component.FormSection;
+import com.example.ui.pages.mixin.AjaxUploadMixin;
 import com.example.ui.pages.mixin.FixedControlNameMixin;
-import com.example.ui.pages.mixin.PreventDoubleSubmitMixin;
 import com.example.ui.pages.mixin.RenderDeferredMixin;
 import org.apache.tapestry5.ComponentParameterConstants;
 import org.apache.tapestry5.SymbolConstants;
@@ -19,7 +19,11 @@ import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
-import org.apache.tapestry5.services.*;
+import org.apache.tapestry5.services.ComponentClassResolver;
+import org.apache.tapestry5.services.PageRenderLinkSource;
+import org.apache.tapestry5.services.RequestFilter;
+import org.apache.tapestry5.services.RequestGlobals;
+import org.apache.tapestry5.services.RequestHandler;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookServiceProvider;
 import org.springframework.social.oauth1.OAuth1ServiceProvider;
@@ -82,10 +86,14 @@ public class UiModule {
         builder.add(Index.class)
                 .add(Social.class)
                 .add(Button.class)
+                .child("component")
+                    .add(FormSection.class)
+                .end()
                 .child("mixin")
                     .add(AjaxUploadMixin.class)
                     .add(RenderDeferredMixin.class)
-                    .add(FixedControlNameMixin.class);
+                    .add(FixedControlNameMixin.class)
+                .end();
         return builder;
     }
 

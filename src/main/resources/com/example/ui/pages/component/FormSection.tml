@@ -1,0 +1,58 @@
+<html t:type="layout"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+
+
+<t:form t:id="form" class="form-horizontal" autocomplete="off">
+    <t:form.section t:id="commonSection">
+        <t:form.fieldset title="message:section.common">
+            <t:errors/>
+            <div class="control-group">
+                <t:label for="first" class="control-label"/>
+                <div class="controls">
+                    <t:textfield t:id="first" value="firstName" validate="required,maxLength=50"
+                                 label="message:label.first-name"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <t:label for="last" class="control-label"/>
+                <div class="controls">
+                    <t:textfield t:id="last" value="lastName" validate="required,maxLength=50"
+                                 label="message:label.last-name"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <t:label for="about" class="control-label"/>
+                <div class="controls">
+                    <t:textarea t:id="about" value="about" validate="maxLength=255"
+                                label="message:label.about"/>
+                </div>
+            </div>
+        </t:form.fieldset>
+    </t:form.section>
+
+    <t:form.section t:id="credentialsSection">
+        <t:form.fieldset title="message:section.credentials">
+            <t:errors/>
+            <div class="control-group">
+                <t:label for="password" class="control-label"/>
+                <div class="controls">
+                    <t:passwordfield t:id="password" value="password" validate="required"
+                                     label="message:label.password"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <t:label for="confirmPassword" class="control-label"/>
+                <div class="controls">
+                    <t:passwordfield t:id="confirmPassword" value="confirmPassword" validate="required"
+                                     label="message:label.password"/>
+                </div>
+            </div>
+        </t:form.fieldset>
+    </t:form.section>
+
+    <div class="form-actions">
+        <t:submit value="message:label.submit" class="btn btn-primary"/>
+    </div>
+</t:form>
+
+</html>

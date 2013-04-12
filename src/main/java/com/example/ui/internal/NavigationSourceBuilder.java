@@ -87,7 +87,7 @@ public class NavigationSourceBuilder implements NavigationSource {
             return child;
         }
 
-        public ItemBuilder parent() {
+        public ItemBuilder end() {
             return parentBuilder;
         }
     }
