@@ -1,5 +1,6 @@
 package com.example.ui.services;
 
+import com.example.ui.internal.BootstrapValidationDecorator;
 import com.example.ui.internal.FileUploadFilter;
 import com.example.ui.internal.NavigationSourceBuilder;
 import com.example.ui.internal.social.google.Google;
@@ -12,18 +13,23 @@ import com.example.ui.pages.mixin.AjaxUploadMixin;
 import com.example.ui.pages.mixin.FixedControlNameMixin;
 import com.example.ui.pages.mixin.RenderDeferredMixin;
 import org.apache.tapestry5.ComponentParameterConstants;
+import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.ValidationDecorator;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.annotations.Contribute;
+import org.apache.tapestry5.ioc.annotations.Decorate;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.ApplicationDefaults;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.services.ComponentClassResolver;
+import org.apache.tapestry5.services.Environment;
 import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestGlobals;
 import org.apache.tapestry5.services.RequestHandler;
+import org.apache.tapestry5.services.ValidationDecoratorFactory;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookServiceProvider;
 import org.springframework.social.oauth1.OAuth1ServiceProvider;
@@ -48,7 +54,7 @@ public class UiModule {
     @Contribute(SymbolProvider.class)
     @ApplicationDefaults
     public void contributeApplicationDefaults(final MappedConfiguration<String, String> configuration) {
-        configuration.add(SymbolConstants.SUPPORTED_LOCALES, "ru,en");
+        configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en");
         configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0-SNAPSHOT");
         configuration.add(SymbolConstants.FORM_CLIENT_LOGIC_ENABLED, "false");
         configuration.add(ComponentParameterConstants.ZONE_UPDATE_METHOD, "none");
@@ -100,5 +106,15 @@ public class UiModule {
     @Contribute(RequestHandler.class)
     public static void contributeRequestHandler(final OrderedConfiguration<RequestFilter> configuration) {
         configuration.addInstance("FileUploadFilter", FileUploadFilter.class);
+    }
+
+    @Decorate(serviceInterface = ValidationDecoratorFactory.class)
+    public ValidationDecoratorFactory overrideValidationDecorator(final ValidationDecoratorFactory delegate,
+                                                                  final Environment environment) {
+        return new ValidationDecoratorFactory() {
+            public ValidationDecorator newInstance(final MarkupWriter writer) {
+                return new BootstrapValidationDecorator(environment, writer);
+            }
+        };
     }
 }
