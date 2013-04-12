@@ -30,6 +30,8 @@ public class FormSection {
     @Persist(PersistenceConstants.FLASH)
     private ValidationTracker tracker;
 
+    private ValidationTracker wrapper;
+
     @Inject
     private ComponentResources resources;
 
@@ -57,9 +59,9 @@ public class FormSection {
         // defer validation to be executed after all field values are populated
         formSupport.defer(new Runnable() {
             public void run() {
-                setupValidationTracker();
+                environment.push(ValidationTracker.class, wrapper);
                 validateSection();
-                cleanupValidationTracker();
+                environment.pop(ValidationTracker.class);
             }
         });
     }
@@ -70,7 +72,7 @@ public class FormSection {
         final ValidationTracker innerTracker = tracker != null ? tracker : new ValidationTrackerImpl();
 
         // get original validation tracker
-        final ValidationTracker outerTracker = environment.peekRequired(ValidationTracker.class);
+        final ValidationTracker outerTracker = environment.pop(ValidationTracker.class);
         // add error recording hook to original validation tracker
         // that will save inner validation tracker in session flash attribute
         final ValidationTracker outerTrackerWrapper = new ValidationTrackerWrapper(outerTracker) {
@@ -97,10 +99,12 @@ public class FormSection {
                 save();
             }
         };
+        // replace original validation tracker with its hooked version
+        environment.push(ValidationTracker.class, outerTrackerWrapper);
 
         // create composite validation tracker that will record errors and input values
         // in both inner and original validation trackers
-        final ValidationTracker wrapper = new ValidationTrackerWrapper(innerTracker) {
+        wrapper = new ValidationTrackerWrapper(innerTracker) {
             @Override
             public void recordError(final Field field, final String errorMessage) {
                 super.recordError(field, errorMessage);
@@ -120,10 +124,6 @@ public class FormSection {
             }
         };
 
-        // replace original validation tracker with its hooked version
-        environment.pop(ValidationTracker.class);
-        environment.push(ValidationTracker.class, outerTrackerWrapper);
-
         // push composite tracker to environment
         // to be accessible by all inner components
         environment.push(ValidationTracker.class, wrapper);
@@ -142,8 +142,7 @@ public class FormSection {
         } catch (RuntimeException ex) {
             final ValidationException ve = ExceptionUtils.findCause(ex, ValidationException.class);
             if (ve != null) {
-                final ValidationTracker tracker = environment.peek(ValidationTracker.class);
-                tracker.recordError(ve.getMessage());
+                wrapper.recordError(ve.getMessage());
                 return;
             }
             throw ex;
