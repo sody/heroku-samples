@@ -1,10 +1,9 @@
 <html t:type="layout"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
 
-<t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
-    <t:delegate to="tabContent"/>
-
-    <t:block t:id="beforeTab">
+<t:tabs t:id="tabs" tabs="prop:tabs" tab="prop:tab" selected="prop:selectedTab">
+    <p:beforeTab>
         <t:form t:id="beforeForm" class="form-horizontal">
             <fieldset>
                 <div class="control-group">
@@ -41,9 +40,9 @@
                 <t:submit value="message:label.submit" class="btn btn-primary"/>
             </div>
         </t:form>
-    </t:block>
+    </p:beforeTab>
 
-    <t:block t:id="afterTab">
+    <p:afterTab>
         <t:form t:id="afterForm" class="form-horizontal">
             <fieldset>
                 <div class="control-group">
@@ -79,12 +78,12 @@
                 <t:submit value="message:label.submit" class="btn btn-primary"/>
             </div>
         </t:form>
-    </t:block>
+    </p:afterTab>
 
-    <t:block t:id="sourceTab">
+    <p:sourceTab>
         <t:source content="classpath:sources/mixin/FixedControlNameMixin_tml.source"/>
         <t:source content="classpath:sources/mixin/FixedControlNameMixin_java.source"/>
-    </t:block>
+    </p:sourceTab>
 </t:tabs>
 
 </html>

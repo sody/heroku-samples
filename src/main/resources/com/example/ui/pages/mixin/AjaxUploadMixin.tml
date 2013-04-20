@@ -1,10 +1,9 @@
 <html t:type="layout"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
 
-<t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
-    <t:delegate to="tabContent"/>
-
-    <t:block t:id="beforeTab">
+<t:tabs t:id="tabs" tabs="prop:tabs" tab="prop:tab" selected="prop:selectedTab">
+    <p:beforeTab>
         <t:zone t:id="beforeZone" id="beforeZone">
             <t:if test="image">
                 <div class="thumbnail">
@@ -60,9 +59,9 @@
                 </div>
             </t:form>
         </t:zone>
-    </t:block>
+    </p:beforeTab>
 
-    <t:block t:id="afterTab">
+    <p:afterTab>
         <t:zone t:id="afterZone" id="afterZone">
             <t:if test="image">
                 <div class="thumbnail">
@@ -118,12 +117,12 @@
                 </div>
             </t:form>
         </t:zone>
-    </t:block>
+    </p:afterTab>
 
-    <t:block t:id="sourceTab">
+    <p:sourceTab>
         <t:source content="classpath:sources/mixin/AjaxUploadMixin_tml.source"/>
         <t:source content="classpath:sources/mixin/AjaxUploadMixin_java.source"/>
-    </t:block>
+    </p:sourceTab>
 
 </t:tabs>
 

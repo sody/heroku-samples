@@ -1,10 +1,9 @@
 <html t:type="layout"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
 
-<t:tabs t:id="tabs" items="prop:tabs" selected="prop:selectedTab">
-    <t:delegate to="tabContent"/>
-
-    <t:block t:id="beforeTab">
+<t:tabs t:id="tabs" tabs="prop:tabs" tab="prop:tab" selected="prop:selectedTab">
+    <p:beforeTab>
         <t:actionlink t:id="updateBefore" zone="prop:beforeZoneId"
                       rel="tooltip" title="zone=${prop:beforeZoneId}" class="btn">
             ${message:label.update}
@@ -16,9 +15,9 @@
                 <p>${beforeContent}</p>
             </div>
         </t:zone>
-    </t:block>
+    </p:beforeTab>
 
-    <t:block t:id="afterTab">
+    <p:afterTab>
         <t:actionlink t:id="updateAfter" zone="prop:afterZoneId" t:mixins="RenderDeferred"
                       rel="tooltip" title="zone=${prop:afterZoneId}" class="btn">
             ${message:label.update}
@@ -30,12 +29,12 @@
                 <p>${afterContent}</p>
             </div>
         </t:zone>
-    </t:block>
+    </p:afterTab>
 
-    <t:block t:id="sourceTab">
+    <p:sourceTab>
         <t:source content="classpath:sources/mixin/RenderDeferredMixin_tml.source"/>
         <t:source content="classpath:sources/mixin/RenderDeferredMixin_java.source"/>
-    </t:block>
+    </p:sourceTab>
 
 </t:tabs>
 

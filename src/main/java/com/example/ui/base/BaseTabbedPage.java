@@ -1,7 +1,6 @@
 package com.example.ui.base;
 
 import com.example.ui.components.Tabs;
-import org.apache.tapestry5.Block;
 import org.apache.tapestry5.EventConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -18,7 +17,21 @@ public class BaseTabbedPage extends BasePage {
     @Component
     private Tabs tabs;
 
+    private String tab;
+
     private String selectedTab;
+
+    public List<String> getTabs() {
+        return Arrays.asList("before", "after", "source");
+    }
+
+    public String getTab() {
+        return tab;
+    }
+
+    public void setTab(final String tab) {
+        this.tab = tab;
+    }
 
     public String getSelectedTab() {
         return selectedTab;
@@ -28,33 +41,20 @@ public class BaseTabbedPage extends BasePage {
         this.selectedTab = selectedTab;
     }
 
-    public List<String> getTabs() {
-        return Arrays.asList("before", "after", "source");
-    }
-
-    public Block getTabContent() {
-        return getResources().getBlock(getSelectedTab() + "Tab");
-    }
-
     @OnEvent(EventConstants.ACTIVATE)
     protected void activatePage(final String tab) {
-        setSelectedTab(tab);
+        selectedTab = tab;
     }
 
     @OnEvent(EventConstants.ACTIVATE)
     protected void activatePage() {
-        if (getSelectedTab() == null) {
-            setSelectedTab(getTabs().get(0));
+        if (selectedTab == null) {
+            selectedTab = getTabs().get(0);
         }
     }
 
     @OnEvent(EventConstants.PASSIVATE)
     protected String passivatePage() {
-        return getSelectedTab();
-    }
-
-    @OnEvent(component = "tabs")
-    protected void selectTab(final String tab) {
-        setSelectedTab(tab);
+        return selectedTab;
     }
 }
