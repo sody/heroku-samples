@@ -1,0 +1,24 @@
+public class FormSection extends BaseTabbedPage {
+
+    @Property
+    private String firstName;
+
+    @Property
+    private String lastName;
+
+    @Property
+    private String about;
+
+    @Property
+    private String password;
+
+    @Property
+    private String confirmPassword;
+
+    @OnEvent(value = EventConstants.VALIDATE, component = "credentialsSection")
+    void validateCredentials() throws ValidationException {
+        if (password != null && confirmPassword != null && !password.equals(confirmPassword)) {
+            throw new ValidationException(message("error.password-match"));
+        }
+    }
+}
