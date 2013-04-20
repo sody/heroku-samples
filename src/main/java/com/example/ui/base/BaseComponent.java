@@ -42,4 +42,8 @@ public class BaseComponent {
     protected String label(final String key) {
         return getMessages().get(MessageUtils.label(key));
     }
+
+    protected String tab(final String key) {
+        return getMessages().get(MessageUtils.tab(key));
+    }
 }

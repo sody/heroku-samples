@@ -10,6 +10,10 @@ public abstract class MessageUtils {
         return "label." + normalize(key);
     }
 
+    public static String tab(final String key) {
+        return "tab." + normalize(key);
+    }
+
     public static String navigation(final String key) {
         return "nav." + normalize(key);
     }

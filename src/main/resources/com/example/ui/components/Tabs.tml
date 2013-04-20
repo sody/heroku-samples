@@ -1,19 +1,36 @@
 <div class="tabbable tabs-top"
-     xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+     xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+     xmlns:p="tapestry:parameter">
 
     <ul class="nav nav-tabs">
-        <t:loop source="items" value="item">
-            <li class="${itemClass}">
-                <t:delegate to="itemBody"/>
+        <t:loop source="tabs" value="tab" formState="none">
+            <li class="${activeClass}">
+                <t:delegate to="tabHeaderBody"/>
             </li>
         </t:loop>
     </ul>
 
     <div class="tab-content">
-        <t:body/>
+        <t:if test="offline">
+            <t:loop source="tabs" value="tab" formState="none">
+                <div id="${tabId}" class="tab-pane${activeClass}">
+                    <t:delegate to="tabBody"/>
+                </div>
+            </t:loop>
+            <p:else>
+                <t:delegate to="tabBody"/>
+            </p:else>
+        </t:if>
     </div>
 
-    <t:block t:id="defaultItemBody">
-        <t:actionlink context="item">${itemLabel}</t:actionlink>
+    <t:block t:id="defaultTabHeaderBody">
+        <t:actionlink context="tab">${tabHeaderLabel}</t:actionlink>
+    </t:block>
+
+    <t:block t:id="defaultOfflineTabHeaderBody">
+        <a href="#${tabId}" data-toggle="tab">${tabHeaderLabel}</a>
+    </t:block>
+
+    <t:block t:id="defaultTabBody">
     </t:block>
 </div>
